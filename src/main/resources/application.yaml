@@ -1,0 +1,25 @@
+spring:
+  application:
+    name : demo4
+  main:
+    banner-mode : off
+  datasource:
+    url: jdbc:postgresql://localhost:5432/artiom_test_db
+    username: artiom
+    password: admin
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  thymeleaf:
+    cache: false
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:/config/newssl.jks
+    key-store-password: 123456
+    key-password: 123456
+    key-store-type: JKS

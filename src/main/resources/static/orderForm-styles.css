@@ -1,0 +1,19 @@
+.list_of_takos{
+    padding: 10px;
+    margin: 5px 10px 5px 0;
+    border-bottom: 1px solid darkred;
+    width: 100%;
+}
+
+.list_of_takos{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.list-elem{
+    font-optical-sizing: revert;
+    padding: 5px 10px;
+    list-style: none;
+
+}
