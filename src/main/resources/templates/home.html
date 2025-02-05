@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
 <head>
     <meta charset="UTF-8">
-    <title>Taco Cloud</title>
+    <title>Home Component</title>
+    <link rel="stylesheet" th:href="@{home-styles.css}"/>
 </head>
 <body>
-
-<h1>Welcome to....</h1>
-<img th:src="@{/images/Taco_Cloud.png}" alt="">
-
+<!-- Page-specific content -->
+<div class="home-content" layout:fragment="content">
+    <div>
+        <h2>Home Page</h2>
+        <p>This is the home page content.</p>
+    </div>
+</div>
 </body>
 </html>

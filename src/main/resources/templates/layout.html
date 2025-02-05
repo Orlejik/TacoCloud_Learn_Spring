@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>My App</title>
+    <link rel="stylesheet" th:href="@{layouts-tyles.css}"/>
+    <script>
+        // Fetch database status when the page loads
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/api/db-status")
+                .then(response => response.json())
+                .then(data => {
+                    const statusDiv = document.getElementById("db-status-message");
+                    if (data.isDatabaseUp) {
+                        statusDiv.style.color = "green";
+                    } else {
+                        statusDiv.style.color = "red";
+                    }
+                    statusDiv.textContent = data.message;
+                })
+                .catch(error => {
+                    console.error("Error fetching database status:", error);
+                });
+        });
+    </script>
+</head>
+<body>
+
+
+<header>
+    <div>
+        <img th:src="@{/images/Taco_Cloud.png}" alt="">
+    </div>
+
+    <div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/design">About</a> |
+<!--            <a href="/contact">Contact</a>-->
+        </nav>
+    </div>
+
+    <div>
+        <div id="db-status-message" style="font-weight: bold; padding: 10px;">
+            <!-- Database status message will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+
+</header>
+
+<!-- Placeholder for page content -->
+<div layout:fragment="content">
+    <p>Changing Content</p>
+</div>
+
+<footer>
+    <p>&copy; footer</p>
+</footer>
+
+</body>
+</html>

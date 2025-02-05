@@ -4,9 +4,12 @@ spring:
   main:
     banner-mode : off
   datasource:
-    url: jdbc:postgresql://localhost:5432/artiom_test_db
+    url: jdbc:postgresql://localhost:5432/tacocloud
     username: artiom
     password: admin
+    generate-unique-name: false
+    name: tacocloud
+    driver-class-name: org.postgresql.Driver
   jpa:
     generate-ddl: false
     hibernate:
@@ -16,10 +19,24 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   thymeleaf:
     cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+
+logging:
+  level:
+    org.thymeleaf: DEBUG
+
 server:
-  port: 8443
+  port: 8080
   ssl:
-    key-store: classpath:/config/newssl.jks
+    key-store: classpath:/config/keystore.p12
     key-store-password: 123456
     key-password: 123456
-    key-store-type: JKS
+    key-store-type: PKCS12
+    key-alias: tacocloud
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

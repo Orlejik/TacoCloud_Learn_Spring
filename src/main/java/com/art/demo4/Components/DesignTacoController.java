@@ -1,18 +1,18 @@
 package com.art.demo4.Components;
 
-import com.art.demo4.Data.Enums.TypeEnum;
 import com.art.demo4.Data.Taco;
 import com.art.demo4.Data.TacoOrder;
+import com.art.demo4.Repositories.Interfaces.IngredientRepository;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.art.demo4.Data.Ingredient;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,24 +26,19 @@ public class DesignTacoController {
 
     Logger log = LoggerFactory.getLogger(DesignTacoController.class);
 
+    private final IngredientRepository ingredientRepo;
+
+    @Autowired
+    public DesignTacoController(IngredientRepository ingredientRepo) {
+        this.ingredientRepo = ingredientRepo;
+    }
+
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
-        List<Ingredient> ingredients = Arrays.asList(
-                new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
-                new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
-                new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
-                new Ingredient("CARN", "Carnitas", Type.PROTEIN),
-                new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES),
-                new Ingredient("LETC", "Lettuce", Type.VEGGIES),
-                new Ingredient("CHED", "Cheddar", Type.CHEESE),
-                new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
-                new Ingredient("SLSA", "Salsa", Type.SAUCE),
-                new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
-        );
-
+        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
         Type[] types = Ingredient.Type.values();
-        for (Type type : types) {
-            model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
+        for(Type type : types) {
+            model.addAttribute(type.toString().toLowerCase(), filterByType((List<Ingredient>) ingredients, type));
         }
     }
 
@@ -58,7 +53,9 @@ public class DesignTacoController {
     }
 
     @GetMapping
-    public String showDesignedForm(){
+    public String showDesignedForm(Model model){
+
+        model.addAttribute("layout", "layouts/design");
         return "design";
     }
 
