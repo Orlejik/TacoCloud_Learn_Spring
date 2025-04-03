@@ -12,47 +12,26 @@
     <img class="image-logo" th:src="@{/images/Taco_Cloud.png}" alt="">
 </div>
 
+<!--<form method="POST" th:action="@{/submit}" th:object="${taco}">-->
 <form method="POST" th:object="${taco}">
     <div class="grid-container">
-        <div class="ingredient-group grid-item" id="wraps">
-            <h3>Design your wrap</h3>
-            <div th:each="ingredient: ${wrap}">
+        <div th:each="type : ${types}">
+            <div class="ingredient-group grid-item" id="ingredients">
+                <h3 th:text="'Design your ' + ${type.getTypeName()}"></h3>
                 <div>
-                    <input type="checkbox" th:field="*{ingredients}" th:value="${ingredient.id}"/>
-                    <span th:text="${ingredient.name}">INGREDIENT</span> <br/>
+                    <div>
+                        <div th:each="ingredient : ${ingredientsByTypeMap[type.typeName]}">
+                            <div>
+                                <label>
+                                    <input type="checkbox" th:field="*{ingredients}" th:value="${ingredient.ingredientShortName}"/>
+                                    <span th:text="${ingredient.ingredientShortName}"></span>
+                                    <span th:text="${ingredient.ingredientName}"></span>
+                                </label>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="ingredient-group grid-item" id="proteins">
-            <h3>Pick your protein:</h3>
-            <div th:each="ingredient : ${protein}">
-                <input th:field="*{ingredients}" type="checkbox" th:value="${ingredient.id}"/>
-                <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-            </div>
-        </div>
-        <div class="ingredient-group grid-item" id="cheeses">
-            <h3>Choose your cheese:</h3>
-            <div th:each="ingredient : ${cheese}">
-                <input th:field="*{ingredients}" type="checkbox"
-                       th:value="${ingredient.id}"/>
-                <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-            </div>
-        </div>
-        <div class="ingredient-group grid-item" id="veggies">
-            <h3>Determine your veggies:</h3>
-            <div th:each="ingredient : ${veggies}">
-                <input th:field="*{ingredients}" type="checkbox"
-                       th:value="${ingredient.id}"/>
-                <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-            </div>
-        </div>
-        <div class="ingredient-group grid-item" id="sauces">
-            <h3>Select your sauce:</h3>
-            <div th:each="ingredient : ${sauce}">
-                <label for="sauces-checkbox"> </label>
-                <input th:field="*{ingredients}" type="checkbox"
-                               th:value="${ingredient.id}" id="sauces-checkbox"/>
-                <span th:text="${ingredient.name}">INGREDIENT</span><br/>
             </div>
         </div>
     </div>
@@ -73,7 +52,17 @@
         </div>
 
     </div>
+
+    <div style="color: red" th:id="error">
+        <div>
+            <p th:text="${error}"></p>
+        </div>
+    </div>
 </form>
+
+<script type="text/javascript">
+    function checkCheckBox(id, userChk) { alert(userChk.checked + " \n "+ id)}
+</script>
 
 </body>
 </html>

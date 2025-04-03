@@ -21,7 +21,7 @@
     </h3>
 
     <a th:href="@{/design}" id="another"> Design Another taco</a> <br>
-    <div class="list_of_takos">
+    <div class="list_of_tacos">
         <ul class="block-list" th:each="taco : ${tacoOrder.tacos}">
             <li class="list-elem" >
                 <span th:text="${taco.name}"> taco name</span>
@@ -35,7 +35,8 @@
     </h3>
 
     <label for="deliveryName">Name: </label>
-    <input type="text" id="deliveryName" th:field="*{deliveryName}" th:if="${#fields.hasErrors('deliveryName')}"/>
+<!--    <input type="text" id="deliveryName" th:field="*{deliveryName}" th:if="${#fields.hasErrors('deliveryName')}"/>-->
+    <input type="text" id="deliveryName" th:field="*{deliveryName}"/>
 <!--    <span class="validationError"-->
 <!--    th:if="${#fields.hasErrors(deliverName)}"-->
 <!--    th:errors="*{deliveryName}">Delivery Name Error</span>-->

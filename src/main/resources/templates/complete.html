@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Complete!</title>
+</head>
+    <body>
+
+        <div>
+            <div>
+                <div>
+                    <div th:text="${status}"></div>
+                </div>
+                <h1>COMPLETE!</h1>
+            </div>
+        </div>
+
+        <script>
+            window.onload = () => {
+                setTimeout(function () {
+                    window.location.href = "http://localhost:8081/";
+                }, 5000)
+            }
+        </script>
+
+    </body>
+</html>

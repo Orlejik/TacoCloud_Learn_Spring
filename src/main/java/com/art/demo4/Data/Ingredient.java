@@ -1,43 +1,33 @@
 package com.art.demo4.Data;
 
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import com.art.demo4.Data.Enums.TypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
 
 @Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class Ingredient {
 
-    private final String id;
-    @NotNull(message = "Name of taco should not be empty")
-    private final String name;
-    @NotNull(message = "check at least one option")
-    private final Type type;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Ingredient(String id, String name, Type type) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-    }
+    @NotNull
+    private String ingredientShortName;
+    @NotNull
+    private String ingredientName;
 
-    public String getId() {
-        return id;
-    }
+    @ManyToOne
+    private IngredientTypes type;
 
-    public String getName() {
-        return name;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public enum Type{
-        WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
+    public Ingredient(String id, String name, String typeId) {
     }
 }
