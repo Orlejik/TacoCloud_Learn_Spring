@@ -4,6 +4,7 @@ spring:
   main:
     banner-mode : off
   datasource:
+#    url: jdbc:postgresql://localhost:5432/tacocloud
     url: jdbc:postgresql://172.19.0.20:5432/tacocloud
     username: artiom
     password: admin
