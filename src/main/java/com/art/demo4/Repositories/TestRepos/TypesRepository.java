@@ -1,14 +1,15 @@
 package com.art.demo4.Repositories.TestRepos;
 
 import com.art.demo4.Data.IngredientTypes;
+import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface TypesRepository extends JpaRepository<IngredientTypes, Integer> {
+public interface TypesRepository extends JpaRepository<IngredientTypes, Long> {
     
-    public List<IngredientTypes> findAll();
+    public @NonNull List<IngredientTypes> findAll();
 
 }

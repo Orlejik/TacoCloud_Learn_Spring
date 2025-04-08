@@ -1,11 +1,13 @@
 package com.art.demo4.Data;
 
 
+import com.art.demo4.Repositories.TestRepos.TypesRepository;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Data
@@ -28,6 +30,9 @@ public class Ingredient {
     @ManyToOne
     private IngredientTypes type;
 
-    public Ingredient(String id, String name, String typeId) {
+    public Ingredient(@NonNull String ingredientShortName, @NonNull String name, IngredientTypes type) {
+        this.ingredientShortName = ingredientShortName;
+        this.ingredientName = name;
+        this.type = type;
     }
 }

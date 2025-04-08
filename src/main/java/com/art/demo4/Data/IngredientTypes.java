@@ -15,5 +15,11 @@ public class IngredientTypes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NonNull
     private String typeName;
+
+        public IngredientTypes(@NonNull String typeName) {
+            this.typeName = typeName;
+    }
+
 }
