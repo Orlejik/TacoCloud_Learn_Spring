@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" th:href="@{registerStyles.css}"/>
+</head>
+<body>
+<div class="header">
+    <div class="header-inner">
+
+        <img th:src="@{/images/Taco_Cloud.png}"/>
+    </div>
+</div>
+
+<div class="container">
+    <div class="registerFormBlock">
+        <form class="formRegister" method="POST" th:action="@{/register}" th:object="${registrationForm}" id="registerForm">
+            <div class="registerForm">
+                <div class="formHeader">
+                    <h1>Register</h1>
+                </div>
+                <div class="inputLabel username">
+                    <div class="label">
+                        <label for="username">Username: </label>
+                    </div>
+                    <div class="input">
+                        <input type="text" th:field="*{username}" name="username"/>
+                    </div>
+                </div>
+                <div class="inputLabel password">
+                    <div class="label">
+                        <label for="password">Password: </label>
+                    </div>
+                    <div class="input">
+                        <input type="password" id="passwd" th:field="*{password}" name="password"/>
+                    </div>
+                </div>
+                <div class="inputLabel confirmPassword">
+                    <div class="label">
+                        <label for="confirm">Confirm password: </label>
+                    </div>
+                    <div class="input">
+                        <input type="password" id="confPasswd" name="confirm"/>
+                    </div>
+                </div>
+                <div class="inputLabel email">
+                    <div class="label">
+                        <label for="email">Email: </label>
+                    </div>
+                    <div class="input">
+                        <input type="email" th:field="*{email}" name="email"/>
+                    </div>
+                </div>
+                <div class="inputLabel fullname">
+                    <div class="label">
+                        <label for="fullname">Full name: </label>
+                    </div>
+                    <div class="input">
+                        <input type="text" th:field="*{fullName}" name="fullname"/>
+                    </div>
+                </div>
+                <div class="inputLabel street">
+                    <div class="label">
+                        <label for="street">Street: </label>
+                    </div>
+                    <div class="input">
+                        <input type="text" th:field="*{street}" name="street"/>
+                    </div>
+                </div>
+                <div class="inputLabel city">
+                    <div class="label">
+                        <label for="city">City: </label>
+                    </div>
+                    <div class="input">
+                        <input type="text" th:field="*{city}" name="city"/>
+                    </div>
+                </div>
+                <div class="inputLabel state">
+                    <div class="label">
+                        <label for="state">State: </label>
+                    </div>
+                    <div class="input">
+                        <input type="text" th:field="*{state}" name="state"/>
+                    </div>
+                </div>
+                <div class="inputLabel zip">
+                    <div class="label">
+                        <label for="zip">Zip: </label>
+                    </div>
+                    <div class="input">
+                        <input type="text" th:field="*{zip}" name="zip"/>
+                    </div>
+                </div>
+                <div class="inputLabel phoneNumber">
+                    <div class="label">
+                        <label for="phone">Phone: </label>
+                    </div>
+                    <div class="input">
+                        <input id="phoneNumber" type="text" th:field="*{phone}" name="phone"/>
+                    </div>
+                </div>
+                <div class="submitBtn">
+                    <div class="btn">
+                        <input id="registerInp" type="submit" value="Register"/>
+                    </div>
+                </div>
+                <div>
+                    <div class="alreadyHaveAccount">
+                        <a th:href="@{/login}">
+                            Already have account?
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        </form>
+    </div>
+</div>
+
+<script>
+    let pwdInput = document.getElementById("passwd");
+    let confPwdInp = document.getElementById("confPasswd");
+    let registerInp = document.getElementById("registerInp");
+
+    registerInp.disabled = true;
+    confPwdInp.addEventListener("change", function() {
+        if(pwdInput.value !== confPwdInp.value){
+            pwdInput.style.backgroundColor = "red";
+            confPwdInp.style.backgroundColor = "red";
+            registerInp.disabled = true;
+        }else{
+            pwdInput.style.backgroundColor = "";
+            registerInp.disabled=false;
+            pwdInput.style.backgroundColor = "white";
+            confPwdInp.style.backgroundColor = "white";
+        }
+    })
+
+    let phoneNumerInput = document.getElementById("phoneNumber");
+    phoneNumerInput.addEventListener("input", function() {
+        let numberOnly = phoneNumerInput.value.replace(/\D/g, "");
+        let phoneBody =  numberOnly.slice(3,11);
+        phoneNumerInput.value = "+373"+phoneBody;
+    })
+    phoneNumerInput.addEventListener("keydown", function(e) {
+        if(phoneNumerInput.selectionStart <=4 && (e.key == "Backspace" || e.key=="Delete")){
+            e.preventDefault();
+        }
+    })
+
+    phoneNumerInput.addEventListener("keypress", function(e) {
+        if(!/[0-9]/.test(e.key)) {
+            e.preventDefault();
+        }
+    })
+</script>
+
+</body>
+</html>

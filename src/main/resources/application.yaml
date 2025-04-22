@@ -20,8 +20,12 @@ spring:
     show-sql: true
   thymeleaf:
     cache: false
+
 server:
   port: 8081
+  error:
+    whitelabel:
+      enabled: false
 #  ssl:
 #    key-store: classpath:/config/newssl.jks
 #    key-store-password: 123456

@@ -32,7 +32,6 @@ html, body{
     font-size: 30px;
     text-align: center;
 }
-
 .name-your-taco{
     display: flex;
     flex-direction: column;

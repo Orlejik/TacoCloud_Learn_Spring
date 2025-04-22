@@ -3,21 +3,22 @@ package com.art.demo4.Components;
 import com.art.demo4.Data.Ingredient;
 import com.art.demo4.Repositories.TestRepos.TestIngredientRepository;
 import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-@Component
-public class IngredientByIdConvector implements Converter<String, Ingredient> {
+import java.util.Optional;
 
-    @Autowired
+@Component
+public class IngredientByIdConverter implements Converter<Long, Optional<Ingredient>> {
+
     private final TestIngredientRepository testIngredientRepository;
 
-    public IngredientByIdConvector(TestIngredientRepository ingredientRepository, TestIngredientRepository testIngredientRepository) {
+    public IngredientByIdConverter(TestIngredientRepository testIngredientRepository) {
         this.testIngredientRepository = testIngredientRepository;
     }
+
     @Override
-    public Ingredient convert(@NonNull String ingredientShortName) {
-        return testIngredientRepository.findByIngredientShortName(ingredientShortName);
+    public Optional<Ingredient> convert(@NonNull Long ingredientShortName) {
+        return testIngredientRepository.findById(ingredientShortName);
     }
 }
