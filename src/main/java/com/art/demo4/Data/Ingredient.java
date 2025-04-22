@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Data
 @Entity
 @AllArgsConstructor
-//@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @NoArgsConstructor
-//@RequiredArgsConstructor
 @Getter
 @Setter
 public class Ingredient {

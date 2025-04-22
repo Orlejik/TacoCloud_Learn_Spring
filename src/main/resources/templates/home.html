@@ -3,11 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{homeStyles.css}"/>
+
 </head>
 <body>
 
-<h1>Welcome to....</h1>
-<img th:src="@{/images/Taco_Cloud.png}" alt="">
+<div class="container">
+    <div class="greetingsContainer">
+        <div class="greetings">
+            <h1>Welcome to....</h1>
+        </div>
+
+        <div class="logo">
+            <img th:src="@{/images/Taco_Cloud.png}" alt="">
+        </div>
+    </div>
+
+    <div class="loginBtn">
+        <a th:href="@{/login}">
+            <input type="button" value="login" class="btn">
+        </a>
+    </div>
+</div>
+
+
 
 </body>
 </html>

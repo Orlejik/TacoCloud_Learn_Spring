@@ -2,9 +2,7 @@ package com.art.demo4.Data;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import java.io.Serializable;
@@ -14,6 +12,8 @@ import java.util.List;
 
 @Data
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Entity
 public class TacoOrder implements Serializable {

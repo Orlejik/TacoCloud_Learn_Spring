@@ -5,22 +5,18 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" th:href="@{loginStyles.css}"/>
-    <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
-    <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
-    <link th:href="@{https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap}" rel="stylesheet">
 </head>
 <body>
 
 <div class="header">
     <div class="header-inner">
-
         <img th:src="@{/images/Taco_Cloud.png}"/>
     </div>
 </div>
 
 <div class="container">
     <div class="loginFormBlock">
-        <div class="login-header">
+        <div class="loginTitle">
             <h1>Login</h1>
         </div>
         <form method="POST" th:action="@{/authenticate}" id="loginForm">
@@ -29,22 +25,16 @@
                     <p style="color: red;" th:text="${session.error}">Error goes here</p>
                 </div>
                 <div class="inputLabel username">
-                    <div class="label">
-                        <label for="username">Username: </label>
-                    </div>
                     <div class="input">
                         <label>
-                            <input type="text" name="user"/>
+                            <input type="text" placeholder="username" name="user"/>
                         </label>
                     </div>
                 </div>
                 <div class="inputLabel password">
-                    <div class="label">
-                        <label for="password">Password: </label>
-                    </div>
                     <div class="input">
                         <label>
-                            <input type="text" name="pwd"/>
+                            <input type="password" placeholder="password" name="pwd"/>
                         </label>
                     </div>
 
@@ -88,7 +78,7 @@
                 <div>
                     <div class="dontHaveAccount">
                         <a th:href="@{/register}">
-                            Don't have account?
+                            Don't have an account?
                         </a>
                     </div>
                 </div>

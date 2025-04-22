@@ -16,89 +16,61 @@
 
 <div class="container">
     <div class="registerFormBlock">
+        <div class="formHeader">
+            <h1>Register</h1>
+        </div>
         <form class="formRegister" method="POST" th:action="@{/register}" th:object="${registrationForm}" id="registerForm">
             <div class="registerForm">
-                <div class="formHeader">
-                    <h1>Register</h1>
-                </div>
+
                 <div class="inputLabel username">
-                    <div class="label">
-                        <label for="username">Username: </label>
-                    </div>
+
                     <div class="input">
-                        <input type="text" th:field="*{username}" name="username"/>
+                        <input type="text" th:field="*{username}" placeholder="Username" name="username"/>
                     </div>
                 </div>
                 <div class="inputLabel password">
-                    <div class="label">
-                        <label for="password">Password: </label>
-                    </div>
                     <div class="input">
-                        <input type="password" id="passwd" th:field="*{password}" name="password"/>
+                        <input type="password" id="passwd" placeholder="Password" th:field="*{password}" name="password"/>
                     </div>
                 </div>
                 <div class="inputLabel confirmPassword">
-                    <div class="label">
-                        <label for="confirm">Confirm password: </label>
-                    </div>
                     <div class="input">
-                        <input type="password" id="confPasswd" name="confirm"/>
+                        <input type="password" placeholder="Confirm Password" id="confPasswd" name="confirm"/>
                     </div>
                 </div>
                 <div class="inputLabel email">
-                    <div class="label">
-                        <label for="email">Email: </label>
-                    </div>
                     <div class="input">
-                        <input type="email" th:field="*{email}" name="email"/>
+                        <input type="email" placeholder="e-mail" th:field="*{email}" name="email"/>
                     </div>
                 </div>
                 <div class="inputLabel fullname">
-                    <div class="label">
-                        <label for="fullname">Full name: </label>
-                    </div>
                     <div class="input">
-                        <input type="text" th:field="*{fullName}" name="fullname"/>
+                        <input type="text" placeholder="Full Name" th:field="*{fullName}" name="fullname"/>
                     </div>
                 </div>
                 <div class="inputLabel street">
-                    <div class="label">
-                        <label for="street">Street: </label>
-                    </div>
                     <div class="input">
-                        <input type="text" th:field="*{street}" name="street"/>
+                        <input type="text" placeholder="Street" th:field="*{street}" name="street"/>
                     </div>
                 </div>
                 <div class="inputLabel city">
-                    <div class="label">
-                        <label for="city">City: </label>
-                    </div>
                     <div class="input">
-                        <input type="text" th:field="*{city}" name="city"/>
+                        <input type="text" placeholder="City" th:field="*{city}" name="city"/>
                     </div>
                 </div>
                 <div class="inputLabel state">
-                    <div class="label">
-                        <label for="state">State: </label>
-                    </div>
                     <div class="input">
-                        <input type="text" th:field="*{state}" name="state"/>
+                        <input type="text" placeholder="State" th:field="*{state}" name="state"/>
                     </div>
                 </div>
                 <div class="inputLabel zip">
-                    <div class="label">
-                        <label for="zip">Zip: </label>
-                    </div>
                     <div class="input">
-                        <input type="text" th:field="*{zip}" name="zip"/>
+                        <input type="text" placeholder="zip code" th:field="*{zip}" name="zip"/>
                     </div>
                 </div>
                 <div class="inputLabel phoneNumber">
-                    <div class="label">
-                        <label for="phone">Phone: </label>
-                    </div>
                     <div class="input">
-                        <input id="phoneNumber" type="text" th:field="*{phone}" name="phone"/>
+                        <input id="phoneNumber" placeholder="Phone Number" type="text" th:field="*{phone}" name="phone"/>
                     </div>
                 </div>
                 <div class="submitBtn">
@@ -109,7 +81,7 @@
                 <div>
                     <div class="alreadyHaveAccount">
                         <a th:href="@{/login}">
-                            Already have account?
+                            Already have an account?
                         </a>
                     </div>
                 </div>
@@ -119,6 +91,10 @@
     </div>
 </div>
 
+<!--<div class="test">-->
+
+<!--</div>-->
+
 <script>
     let pwdInput = document.getElementById("passwd");
     let confPwdInp = document.getElementById("confPasswd");
@@ -127,8 +103,8 @@
     registerInp.disabled = true;
     confPwdInp.addEventListener("change", function() {
         if(pwdInput.value !== confPwdInp.value){
-            pwdInput.style.backgroundColor = "red";
-            confPwdInp.style.backgroundColor = "red";
+            pwdInput.style.backgroundColor = "#ff000069";
+            confPwdInp.style.backgroundColor = "#ff000069";
             registerInp.disabled = true;
         }else{
             pwdInput.style.backgroundColor = "";

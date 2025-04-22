@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/tacos", produces = {"application/json", "text/xml"})
-@CrossOrigin(origins = {"https://tacocloud:8080", "http://localhost:8080"})
+@CrossOrigin(origins = {"https://tacocloud:8081", "http://localhost:8081"})
 public class TacoController {
 //    private final TacoRepository tacoRepo;
 //
