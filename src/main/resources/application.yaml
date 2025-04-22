@@ -20,29 +20,6 @@ spring:
     show-sql: true
   thymeleaf:
     cache: false
-  security:
-    oauth2:
-      client:
-        registration:
-#          <oauth or openid provider name>
-          facebook:
-            # google OAuth2 creation Link:
-            #   https://developpers.facebook.com
-            client-id: 718526530700439
-            client-secret: ca97d49bed501b482c69a539d070651f
-            scope:
-              - email
-              - public_profile
-          google:
-#            google OAuth2 creation Link:
-#              https://console.cloud.google.com/auth/clients?project=tacocloud-457009&supportedpurview=project
-            client-id: 274724992769-00rp4f33436h4a892n3ji4nng2m4u0te.apps.googleusercontent.com
-            client-secret: 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
-#          X:
-##            Twitter OAuth2 creation Link
-##            https://developer.x.com/en/portal/projects/1912481475015913472/apps/30581044/keys
-#            client-id: SDJIZlVwVldrS2tGUzdxRU9Lbjk6MTpjaQ
-#            client-secret: R8Yn5yIszgtvSqK1Wn44-99EOXcBcUNj68YqWJ7eRi3ru5N39K
 
 
 server:
