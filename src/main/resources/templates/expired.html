@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{sessionExpired.css}"/>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="msgSessionExpired">
+        <div class="roundedSign">
+            !
+        </div>
+        <div class="msg">
+            <div> Dear User, Your session has been <span>expired.</span></div>
+            <div>
+                <p class="clickHereToLogin"><a th:href="@{/login}">click here </a></p> to login again
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    // window.addEventListener('load', function(){setTimeout(function(){ history.back()}, 10000)})
+
+</script>
+
+</body>
+</html>

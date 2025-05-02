@@ -52,6 +52,9 @@ public class TacoOrder implements Serializable {
     )
     private List<Taco> tacos = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
     public void addTaco(Taco taco){
         this.tacos.add(taco);
     }

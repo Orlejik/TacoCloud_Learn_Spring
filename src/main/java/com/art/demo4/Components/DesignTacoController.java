@@ -1,8 +1,6 @@
 package com.art.demo4.Components;
 
-import com.art.demo4.Data.IngredientTypes;
-import com.art.demo4.Data.Taco;
-import com.art.demo4.Data.TacoOrder;
+import com.art.demo4.Data.*;
 import com.art.demo4.Repositories.TestRepos.TestIngredientRepository;
 import com.art.demo4.Repositories.TestRepos.TestTacoRepository;
 import com.art.demo4.Repositories.TestRepos.TypesRepository;
@@ -10,8 +8,8 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
-import com.art.demo4.Data.Ingredient;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
@@ -60,7 +58,11 @@ public class DesignTacoController {
     }
 
     @GetMapping
-    public String showDesignedForm(@ModelAttribute Taco designedTaco, Model model) {
+    public String showDesignedForm(@ModelAttribute Taco designedTaco, Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("user", user);
+        System.out.println(user.getAuthorities());
+        String url = "http:localhost:8081/design";
+        System.out.println("Access URL: "+url);
         return "design";
     }
 
@@ -85,6 +87,8 @@ public class DesignTacoController {
         log.info("Processing taco : " + taco);
         if (error.hasErrors()) {
             model.addAttribute("error", error.getAllErrors());
+            String url = "http:localhost:8081/design?error";
+            System.out.println("Access URL: "+url);
             return "design";
         }
         Taco newTaco = new Taco();
@@ -94,6 +98,8 @@ public class DesignTacoController {
         tacoOrder.addTaco(newTaco);
         testTacoRepository.save(newTaco);
         log.info("Processing taco Order : " + tacoOrder);
+        String url = "http:localhost:8081/orders/current";
+        System.out.println("Access URL: "+url);
         return "redirect:/orders/current";
     }
 

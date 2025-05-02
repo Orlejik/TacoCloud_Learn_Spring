@@ -23,6 +23,7 @@ public class Ingredient {
     private Long id;
 
     @NotNull
+    @Column(nullable = false)
     private String ingredientShortName;
     @NotNull
     private String ingredientName;
@@ -35,9 +36,5 @@ public class Ingredient {
         this.ingredientName = name;
         this.type = type;
     }
-
-//    public Ingredient() {
-//
-//    }
 
 }

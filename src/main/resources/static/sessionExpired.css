@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: #bdbdbd;
+
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    /*border: 1px solid #dd6060;*/
+    width: 500px;
+    padding: 25px 70px;
+    border-radius: 15px;
+    -webkit-box-shadow: 11px 16px 8px -6px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 11px 16px 8px -6px rgba(34, 60, 80, 0.2);
+    box-shadow: 11px 16px 8px -6px rgba(34, 60, 80, 0.2);
+    background-color: white;
+
+}
+
+.msgSessionExpired {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.roundedSign {
+    font-size: 80px;
+    line-height: 100px;
+    font-weight: bold;
+    border: 1px solid #dd6060;
+    width: 100px;
+    text-align: center;
+    border-radius: 100%;
+    color: #dd6060;
+    /*margin: 15px 0;*/
+}
+
+.msg {
+    text-align: center;
+    padding: 15px 0;
+}
+
+.msg span {
+    font-weight: bold;
+    color: #dd6060;
+    text-decoration: underline;
+}
+
+.msg a{
+    text-decoration: none;
+    color: #39a539;
+
+}
+.msg div:nth-child(2){
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.clickHereToLogin{
+    padding-right: 6px;
+    transform: rotate(5deg);
+    animation: shaking 1s infinite;
+}
+@keyframes shaking {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(5deg); }
+    20% { transform: rotate(0deg); }
+    30% { transform: rotate(3deg); }
+    40% { transform: rotate(0deg); }
+    50% { transform: rotate(1deg); }
+    60% { transform: rotate(0deg); }
+    70% { transform: rotate(-3deg); }
+    80% { transform: rotate(0deg); }
+    90% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}

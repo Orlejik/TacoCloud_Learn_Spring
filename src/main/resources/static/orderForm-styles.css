@@ -1,3 +1,131 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+body{
+    background: #c6c6c6;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.header{
+
+    width: 110%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.image-logo{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+background-color: white;
+    border-bottom: 1px solid #a3a3a3;
+}
+
+.formDeliverTo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+background-color: white;
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 20%;*/
+    /*transform: translate(-50px, 0px) scale(1);*/
+    width: 700px;
+    padding: 35px 20px;
+}
+
+#formToSubmit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 100%;
+    padding: 35px 20px;
+}
+
+.tacosInOrderContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    margin-top: 30px;
+}
+
+.tacoInOrderItem{
+    display: flex;
+    flex-direction: row;
+    align-content: baseline;
+    align-items: center;
+    padding: 10px 15px;
+}
+.tacoInOrderItem p{
+    padding: 0 15px;
+}
+
+/*.designOtherTacoBtn{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    text-align: center ;*/
+/*    border: none;*/
+/*    background-color: #a3a3a3;*/
+/*    color: white;*/
+/*    cursor: pointer;*/
+/*    border-radius: 10px;*/
+/*    padding: 10px 15px;*/
+/*    margin-top: 10px;*/
+/*}*/
+.designOtherTacoBtn a{
+    text-decoration: none;
+    color: white;
+    pointer-events: auto;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.designOtherTacoBtn{
+    width: 100%;
+    padding: 30px 0;
+
+}
+.designOtherTacoBtn a{
+    width: 80%;
+    height: 40px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 19px;
+    background-color: #39a539;
+    border-radius: 6px;
+    transition: .3s;
+}
+.designOtherTacoBtn a:hover{
+    transition: .3s;
+    width: 80%;
+    height: 40px;
+    border: none;
+    color: #e3e3e3;
+    -webkit-box-shadow: 9px -9px 11px -7px rgba(34, 60, 80, 0.2) inset;
+    -moz-box-shadow: 9px -9px 11px -7px rgba(34, 60, 80, 0.2) inset;
+    box-shadow: 9px -9px 11px -7px rgba(34, 60, 80, 0.2) inset;
+}
+
 .list_of_takos{
     padding: 10px;
     margin: 5px 10px 5px 0;
@@ -17,3 +145,223 @@
     list-style: none;
 
 }
+
+.deliverMyTacosToContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.deliverMyTacosTo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.inputDetailsDiv{
+    width: 100%;
+ }
+
+.inputBlock{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.inputBlock .input{
+    width: 100%;
+}
+.input input{
+    padding: 10px;
+    border: none;
+    width: 100%;
+    outline: 1px solid #838383;
+}
+
+.submitBtnBlock{
+    width: 100%;
+    padding: 30px 0;
+
+}
+.submitBtnBlock input{
+    width: 80%;
+    height: 40px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 19px;
+    background-color: #39a539;
+    border-radius: 6px;
+    transition: .3s;
+}
+.submitBtnBlock input:hover{
+    transition: .3s;
+    width: 80%;
+    height: 40px;
+    border: none;
+    color: #e3e3e3;
+    -webkit-box-shadow: 9px -9px 11px -7px rgba(34, 60, 80, 0.2) inset;
+    -moz-box-shadow: 9px -9px 11px -7px rgba(34, 60, 80, 0.2) inset;
+    box-shadow: 9px -9px 11px -7px rgba(34, 60, 80, 0.2) inset;
+}
+
+
+.paymentMethod{
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    transition: .8s ease;
+    transform: scale(1);
+}
+
+.scalable.hide {
+    transition: .8s ease;
+    transform: scale(0);
+
+}
+
+.scalable.makeThin{
+    transition: .8s ease;
+    height: 0;
+}
+
+
+#paymentsMethodDiv {
+    transition: transform .8s ease;
+    transform: scale(1);
+    transform-origin: top center;
+    overflow: hidden;
+}
+
+/* Step 1: scale to 0 */
+#paymentsMethodDiv.scale-zero {
+    transform: scale(0);
+    transition: 0.8s ease;
+}
+
+/* Step 2: collapse height */
+#paymentsMethodDiv.height-zero {
+    height: 0;
+    transition: auto-height 0.3s ease;
+}
+
+/* Restore height (optional for re-expansion) */
+#paymentsMethodDiv.auto-height {
+    height: auto;
+    transition: 0.3s ease;
+}
+
+
+
+
+
+
+
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.switch {
+    position: relative;
+    width: 90px;
+    height: 40px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-color: #4caf50;
+    border-radius: 40px;
+    transition: background-color 0.4s;
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 32px;
+    width: 32px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #ccc;
+}
+
+input:checked + .slider::before {
+    transform: translateX(50px);
+}
+
+.switch-label {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 60px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    transition: opacity 0.3s ease;
+    left: -50px;
+}
+
+.label-on,
+.label-off {
+    position: absolute;
+    width: 100%;
+    transition: opacity 0.3s ease;
+}
+
+.label-on {
+    opacity: 0;
+}
+
+input:checked ~ .switch-label .label-on {
+    opacity: 1;
+}
+
+input:checked ~ .switch-label .label-off {
+    opacity: 0;
+}
+
+input:not(:checked) ~ .switch-label .label-on {
+    opacity: 0;
+}
+
+input:not(:checked) ~ .switch-label .label-off {
+    opacity: 1;
+}
+
+
+
+
+

@@ -50,6 +50,9 @@ server:
   error:
     whitelabel:
       enabled: false
+  servlet:
+    session:
+      timeout: 30m
 #  ssl:
 #    key-store: classpath:/config/newssl.jks
 #    key-store-password: 123456

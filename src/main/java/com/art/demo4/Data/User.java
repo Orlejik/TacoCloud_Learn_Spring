@@ -1,13 +1,16 @@
 package com.art.demo4.Data;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -44,6 +47,13 @@ public class User implements UserDetails {
     private String zip;
     @NonNull
     private String state;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
 
     public User(@NonNull String username, @NonNull String password, @NonNull String fullName, @NonNull String email, @NonNull String phone, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip) {
         this.username = username;
@@ -55,11 +65,14 @@ public class User implements UserDetails {
         this.city = city;
         this.state = state;
         this.zip = zip;
+        this.roles = new ArrayList<>();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getRoleName()))
+                .collect(Collectors.toList());
     }
 
     @Override

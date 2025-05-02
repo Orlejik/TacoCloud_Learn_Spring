@@ -4,74 +4,174 @@
     <meta charset="UTF-8">
     <title>Taco Cloud</title>
     <link rel="stylesheet" th:href="@{/orderForm-styles.css}">
-    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
-
-<form method="POST" th:object="${tacoOrder}" th:action="@{/orders}">
-
+<div class="formDeliverTo">
     <div class="header">
-        <h1>Order your Taco Creation !</h1>
         <img class="image-logo" th:src="@{/images/Taco_Cloud.png}" alt="">
+        <h1>Order your Taco Creation !</h1>
     </div>
+    <form method="POST" id="formToSubmit" th:object="${tacoOrder}" th:action="@{/orders}">
 
 
-    <h3>
-        Your taco is in order!
-    </h3>
+        <div class="tacosInOrderContainer">
+            <h3>
+                Your tacos in order:
+            </h3>
 
-    <a th:href="@{/design}" id="another"> Design Another taco</a> <br>
-    <div class="list_of_tacos">
-        <ul class="block-list" th:each="taco : ${tacoOrder.tacos}">
-            <li class="list-elem" >
-                <span th:text="${taco.name}"> taco name</span>
-            </li>
-        </ul>
-    </div>
+            <div class="list_of_tacos">
+                <ul class="block-list" th:each="taco : ${tacoOrder.tacos}">
+                    <li class="list-elem">
+                        <div class="tacoInOrderItem">
+                            <img class="image-logo" th:src="@{/images/Taco_Cloud.png}" alt="">
+                            <p th:text="${taco.name}"> taco name</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="designOtherTacoBtn">
+                <a th:href="@{/design}" id="another"> Add new taco in order</a>
+            </div>
+        </div>
+
+        <div class="deliverMyTacosToContainer">
+            <div class="deliverMyTacosTo">
+                <h3>
+                    Deliver my taco masterpieces to....
+                </h3>
+
+                <div class="inputDetailsDiv">
+                    <div class="inputBlock inputName">
+                        <div class="input">
+                            <label for="deliveryName"></label>
+                            <input placeholder="Name..." autocomplete="off" th:value="*{deliveryName} == null ? ${user.fullName} : *{deliveryName}" type="text" id="deliveryName" th:field="*{deliveryName}"/>
+                            <!--    <span class="validationError"-->
+                            <!--    th:if="${#fields.hasErrors(deliverName)}"-->
+                            <!--    th:errors="*{deliveryName}">Delivery Name Error</span>-->
+                        </div>
+                    </div>
+                    <div class="inputBlock inputStreet">
+                        <div class="input">
+                            <label for="deliveryStreet"></label>
+                            <input type="text" placeholder="Street..." autocomplete="off" th:value="*{deliveryStreet} == null ? ${user.getStreet} : *{deliveryStreet}" id="deliveryStreet" th:field="*{deliveryStreet}"/>
+                            <!--    <span class="validationError"-->
+                            <!--          th:if="${#fields.hasErrors(deliveryStreet)}"-->
+                            <!--          th:errors="*{deliveryStreet}">Delivery Street Error</span>-->
+
+                        </div>
+                    </div>
+
+                    <div class="inputBlock inputCity">
+                        <div class="input">
+                            <label for="deliveryCity"></label>
+                            <input type="text" placeholder="City..." autocomplete="off" th:value="*{deliveryCity} == null ? ${user.getCity} : *{deliveryCity}" id="deliveryCity" th:field="*{deliveryCity}"/>
+                            <!--    <span class="validationError"-->
+                            <!--          th:if="${#fields.hasErrors(deliveryCity)}"-->
+                            <!--          th:errors="*{deliveryCity}">Delivery Street Error</span>-->
+                        </div>
+                    </div>
+
+                    <div class="inputBlock inputState">
+                        <div class="input">
+                            <label for="deliveryState"></label>
+                            <input type="text" placeholder="State..." autocomplete="off" id="deliveryState" th:field="*{deliveryState}" th:value="*{deliveryState} == null ? ${user.getState} : *{deliveryState}"/>
+                        </div>
+                    </div>
+                    <div class="inputBlock inputZipCode">
+                        <div class="input">
+                            <label for="deliveryZip"></label>
+                            <input type="text" placeholder="Zip Code..." autocomplete="off" id="deliveryZip" th:field="*{deliveryZip}" th:value="*{deliveryZip} == null ? ${user.getZip} : *{deliveryZip}"/>
+                        </div>
+                    </div>
+
+                    <div class="paymentMethod">
+                        <label class="switch">
+                            <input type="checkbox" id="toggleSwitch">
+                            <span class="slider"></span>
+                            <div class="switch-label">
+                                <span class="label-on">Cash</span>
+                                <span class="label-off">Card</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div id="paymentsMethodDiv"  class="paymentsMethodBlock scalable">
+                        <h3>Here’s how I’ll pay...</h3>
+                        <div class="inputs">
+
+                            <div class="inputBlock inputCardNumber">
+                                <div class="label">
+
+                                </div>
+                                <div class="input">
+                                    <label for="ccNumber"></label>
+                                    <input type="text"autocomplete="off" disabled placeholder="Credit Card Number..." id="ccNumber" th:field="*{ccNumber}"/>
+                                </div>
+                            </div>
+                            <div class="inputBlock inputExpirationDate">
+                                <div class="input">
+                                    <label for="ccExpiration"></label>
+                                    <input placeholder="expiration date..." disabled autocomplete="off" type="text" id="ccExpiration" th:field="*{ccExpiration}"/>
+                                </div>
+                            </div>
+                            <div class="inputBlock inputCVV">
+                                <div class="input">
+                                    <label for="ccCVV"></label>
+                                    <input placeholder="ccVV" autocomplete="off" disabled type="text" id="ccCVV" th:field="*{ccCVV}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submitBtnBlock">
+                    <input type="submit" value="Submit Order"/>
+                </div>
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            </div>
+        </div>
 
 
-    <h3>
-        Deliver my taco masterpieces to....
-    </h3>
+    </form>
+</div>
 
-    <label for="deliveryName">Name: </label>
-<!--    <input type="text" id="deliveryName" th:field="*{deliveryName}" th:if="${#fields.hasErrors('deliveryName')}"/>-->
-    <input type="text" id="deliveryName" th:field="*{deliveryName}"/>
-<!--    <span class="validationError"-->
-<!--    th:if="${#fields.hasErrors(deliverName)}"-->
-<!--    th:errors="*{deliveryName}">Delivery Name Error</span>-->
-    <br/>
-    <label for="deliveryStreet">Street address: </label>
-    <input type="text" id="deliveryStreet" th:field="*{deliveryStreet}"/>
-<!--    <span class="validationError"-->
-<!--          th:if="${#fields.hasErrors(deliveryStreet)}"-->
-<!--          th:errors="*{deliveryStreet}">Delivery Street Error</span>-->
-    <br/>
-    <label for="deliveryCity">City: </label>
-    <input type="text" id="deliveryCity" th:field="*{deliveryCity}"/>
-<!--    <span class="validationError"-->
-<!--          th:if="${#fields.hasErrors(deliveryCity)}"-->
-<!--          th:errors="*{deliveryCity}">Delivery Street Error</span>-->
-    <br/>
-    <label for="deliveryState">State: </label>
-    <input type="text" id="deliveryState" th:field="*{deliveryState}"/>
-    <br/>
-    <label for="deliveryZip">Zip code: </label>
-    <input type="text" id="deliveryZip" th:field="*{deliveryZip}"/>
-    <br/>
-    <h3>Here’s how I’ll pay...</h3>
-    <label for="ccNumber">Credit Card #: </label>
-    <input type="text" id="ccNumber" th:field="*{ccNumber}"/>
-    <br/>
-    <label for="ccExpiration">Expiration: </label>
-    <input type="text" id="ccExpiration" th:field="*{ccExpiration}"/>
-    <br/>
-    <label for="ccCVV">CVV: </label>
-    <input type="text" id="ccCVV" th:field="*{ccCVV}"/>
-    <br/>
-    <input type="submit" value="Submit Order"/>
-</form>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const paymentsDiv = document.getElementById('paymentsMethodDiv');
+        const inputsInDiv = paymentsDiv.querySelectorAll("input");
+        const toggleSwitch = document.getElementById('toggleSwitch');
 
+        toggleSwitch.addEventListener('change', function () {
+            if (this.checked) {
+                // Disable inputs and clear values
+                inputsInDiv.forEach(input => {
+                    input.disabled = true;
+                    input.value = "";
+                });
 
+                // Step 1: Scale to 0
+                paymentsDiv.classList.add('scale-zero');
+
+                // Step 2: Collapse height after scale completes
+                setTimeout(() => {
+                    paymentsDiv.classList.add('height-zero');
+                }, 2000);
+            } else {
+                // Step 1: Restore height
+                paymentsDiv.classList.remove('height-zero');
+
+                // Step 2: After a short delay, scale back up
+                setTimeout(() => {
+                    paymentsDiv.classList.remove('scale-zero');
+                }, 100); // allow height to restore first
+
+                // Re-enable inputs
+                inputsInDiv.forEach(input => input.disabled = false);
+            }
+        });
+    });
+
+</script>
 </body>
 </html>

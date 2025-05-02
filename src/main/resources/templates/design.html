@@ -7,6 +7,10 @@
 </head>
 <body>
 
+<!--<div class="userGreets">-->
+<!--    <h2 th:text="${user.getFullName()}"></h2>-->
+<!--</div>-->
+
 <div class="header">
     <h1>Design your taco</h1>
     <img class="image-logo" th:src="@{/images/Taco_Cloud.png}" alt="">
@@ -26,7 +30,7 @@
                         <div th:each="ingredient : ${ingredientsByTypeMap[type.typeName]}">
                             <div>
                                 <label>
-                                    <input type="checkbox" th:field="*{ingredients}" th:value="${ingredient.ingredientShortName}"/>
+                                    <input type="checkbox" th:field="*{ingredients}" th:value="${ingredient.id}"/>
                                     <span th:text="${ingredient.ingredientShortName}"></span>
                                     <span th:text="${ingredient.ingredientName}"></span>
                                 </label>
@@ -61,6 +65,7 @@
             <p th:text="${error}"></p>
         </div>
     </div>
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 </form>
 
 <script type="text/javascript">

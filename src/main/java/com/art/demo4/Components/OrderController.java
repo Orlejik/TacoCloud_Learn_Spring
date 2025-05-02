@@ -1,6 +1,9 @@
 package com.art.demo4.Components;
 
+import com.art.demo4.Data.User;
 import com.art.demo4.Repositories.TestRepos.TestTacoRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import com.art.demo4.Data.TacoOrder;
 import com.art.demo4.Repositories.TestRepos.TestOrderRepository;
@@ -29,8 +32,10 @@ public class OrderController {
     }
 
     @GetMapping("/current")
-    public String orderForm(){
+    public String orderForm(Model model, @AuthenticationPrincipal User user) {
         log.info("orderForm was requested");
+        model.addAttribute("user", user);
+        System.out.println("orderForm was requested");
         return "orderForm";
     }
 
@@ -41,9 +46,16 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(@Valid TacoOrder order, Model model, Errors error, SessionStatus status){
+    public String processOrder(@Valid TacoOrder order,
+                               Model model,
+                               Errors error,
+                               SessionStatus status,
+                               @AuthenticationPrincipal User user){
 
         log.info("Order Submitted : "+order);
+
+
+
 
         if(error.hasErrors()){
             return "orderForm";
@@ -60,9 +72,8 @@ public class OrderController {
         newOrder.setCcExpiration(order.getCcExpiration());
         newOrder.setCcCVV(order.getCcCVV());
         newOrder.setPlacedAt(order.getPlacedAt());
-//        newOrder.setTacos(testTacoRepository.findAllByOrderId(order.getId()));
         newOrder.setTacos(order.getTacos().stream().toList());
-
+        newOrder.setUser(user);
 
         testOrderRepository.save(newOrder);
         status.setComplete();
